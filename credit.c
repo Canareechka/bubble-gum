@@ -52,7 +52,7 @@ int main(void)
     if ((luhn_sum_even + luhn_sum_odd) % 10 != 0)
     {
         printf("INVALID\n");
-        return 1;
+        return 0;
     }
        //if size == 15 and (ftd == 34 or ftd == 37) then vendor = Amex
     if (size == 15 && (ftd == 34 || ftd == 37))
@@ -61,7 +61,7 @@ int main(void)
         return 0;
     }
        //if (size == 13 or size == 16) and ftd == 4 then vendor = VISA
-    else if ((size == 13 || size == 16) && ftd == 4)
+    else if ((size == 13 || size == 16) && (ftd/10) == 4)
     {
         printf("VISA\n");
         return 0;
@@ -75,7 +75,6 @@ int main(void)
     else
     {
         printf("INVALID\n");
-        return 1;
+        return 0;
     }
 }   
-
