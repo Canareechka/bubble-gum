@@ -24,9 +24,6 @@ int main(void)
     }
     //ftd - first two digits
     int ftd = credit/temp;
-    //if size == 15 and (ftd == 34 or ftd == 37) then vendor = Amex
-    //if (size == 13 or size == 16) and ftd == 4 then vendor = VISA
-    //if size == 16 and (ftd == 51 or ftd == 52 or ftd == 53 or ftd == 54 or ftd == 55) then vendor = MasterCard
     int luhn_sum_even = 0;
     int luhn_sum_odd = 0;
     i = 1;
@@ -57,12 +54,28 @@ int main(void)
         printf("INVALID\n");
         return 1;
     }
-    //else vendor = INVALID
-    //printf("%ld\n",credit/temp);
-}
-//American Express uses 15-digit numbers, 
-//MasterCard uses 16-digit numbers, 
-//Visa uses 13- and 16-digit numbers
-//All American Express numbers start with 34 or 37;
-//most MasterCard numbers start with 51, 52, 53, 54, or 55
-//all Visa numbers start with 4
+       //if size == 15 and (ftd == 34 or ftd == 37) then vendor = Amex
+    if (size == 15 && (ftd == 34 || ftd == 37))
+    {
+        printf("AMEX\n");
+        return 0;
+    }
+       //if (size == 13 or size == 16) and ftd == 4 then vendor = VISA
+    else if ((size == 13 || size == 16) && ftd == 4)
+    {
+        printf("VISA\n");
+        return 0;
+    }
+    //if size == 16 and (ftd == 51 or ftd == 52 or ftd == 53 or ftd == 54 or ftd == 55) then vendor = MasterCard
+    else if (size == 16 && (ftd == 51 || ftd == 52 || ftd == 53 || ftd == 54 || ftd == 55))    
+    {
+        printf("MASTERCARD\n");
+        return 0;
+    }
+    else
+    {
+        printf("INVALID\n");
+        return 1;
+    }
+}   
+
