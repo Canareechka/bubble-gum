@@ -27,7 +27,9 @@ int main(int argc, string argv[])
     // setting start of output
     printf("ciphertext: ");
     // cycling through each character of provided plaintext to turn it into ciphertext
-    for (int i=0, n=strlen(plaintext), j=0; i<n; i++) {
+    int i=0, n=strlen(plaintext), j=0, k=0;
+    while (i<n) {
+    // for (int i=0, n=strlen(plaintext), j=0; i<n; i++) {
         // variable which contains current plain-text char
         p_char = (int) plaintext[i];
         // variable which contains current keyword char
@@ -41,10 +43,11 @@ int main(int argc, string argv[])
         // if char is a symbol, then printing it as it is
         } else {
             printf("%c", p_char);
+            i++;
             continue;
         }
         // checking if keyword char belongs to lower-case letters
-        if (p_char <= 90) {
+        if (k_char <= 90) {
             l_boundary_keyword = 65;
         } else {
             l_boundary_keyword = 97;
@@ -55,9 +58,12 @@ int main(int argc, string argv[])
         // Using formula: start_of_ascii_offset + (position_of_char - start_of_ascii_offset + cipher_key) % number_of_letters_in_latin_alphabet
         c_char = l_boundary_plaintext + (((p_char - l_boundary_plaintext) + key) % 26);
         printf("%c", c_char);
+        // printf("i - %i, j - %i, p_char - %i, k_char - %i, key - %i\n", i, j, p_char, k_char, key);
         // setting position of keyword character for next cycle
-        if (i >= (k_len - 1)) {
-            j = i % k_len;
+        i++;
+        k++;
+        if (k >= (k_len - 1)) {
+            j = k % k_len;
         } else {
             j++;
         }
